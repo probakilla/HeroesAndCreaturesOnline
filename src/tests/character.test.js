@@ -27,17 +27,17 @@ describe('Character Tests', () => {
         };
         expect(typeErrorInitialization).toThrowError(TypeError, 'Not a number');
         typeErrorInitialization = () => {
-            new Character({num: 1}, 2);
-        }
+            new Character({ num: 1 }, 2);
+        };
         expect(typeErrorInitialization).toThrowError(TypeError, 'Not a number');
     });
 
     it('Character Equip Weapon Type Check Test', () => {
         const errorFunction = () => {
-            fixture.equipWeapon("Not a weapon");
-        }
+            fixture.equipWeapon('Not a weapon');
+        };
         expect(errorFunction).toThrowError(TypeError, 'Not a weapon');
-    })
+    });
 
     it('Character Equip Weapon Test', () => {
         const testWeapon = new Weapon(CharacterConsts.DefaultStat);
@@ -81,4 +81,21 @@ describe('Character Tests', () => {
         };
         expect(throwFunction).toThrowError(TypeError, 'Not a number');
     });
+
+    it('Character Block Test', () => {
+        fixture.block(CharacterConsts.BlockAmount);
+        expect(fixture.getHealth()).toEqual(CharacterConsts.BlockAmount);
+        expect(fixture.getMaxHealth()).toEqual(CharacterConsts.DefaultStat);
+    });
+
+    it('Character ToString Test', () => {
+        const str = "Health: 10 Agility: 10 Weapon: 1";
+        expect(fixture.toString()).toEqual(str);
+    })
+
+    it('Character IsDead Test', () => {
+        expect(fixture.isDead()).toEqual(false);
+        fixture.block(CharacterConsts.DefaultStat);
+        expect(fixture.isDead()).toEqual(true);
+    })
 });
