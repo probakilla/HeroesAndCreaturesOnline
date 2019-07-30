@@ -1,7 +1,6 @@
 class Weapon {
     constructor(power) {
         this.power = power;
-        this.attack.bind(this);
     }
 
     attack() {
