@@ -5,7 +5,6 @@ import CharacterConsts from './TestConsts';
 it('Character Initilization Test', () => {
     const testCharacter = new Character(CharacterConsts.DefaultStat, CharacterConsts.DefaultStat);
     expect(testCharacter.getAgility()).toEqual(CharacterConsts.DefaultStat);
-    expect(testCharacter.stats.agility).toEqual(6);
     expect(testCharacter.getHealth()).toEqual(CharacterConsts.DefaultStat);
     expect(testCharacter.getMaxHealth()).toEqual(CharacterConsts.DefaultStat);
     expect(testCharacter.getInitiative()).toEqual(0);

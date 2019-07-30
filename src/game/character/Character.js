@@ -6,6 +6,8 @@ class Character {
     constructor(health, agility) {
         this.stats = new CharacterStats(health, agility);
         this.weapon = null;
+        this.equipWeapon.bind(this);
+        this.getPower.bind(this);
     }
 
     getMaxHealth() {
@@ -28,7 +30,7 @@ class Character {
         if (!this.weapon) {
             return CharacterConsts.DefaultPower;
         } else {
-            this.weapon.attack();
+            return this.weapon.attack();
         }
     }
 
@@ -50,7 +52,7 @@ class Character {
     attack() {
         this.resetInitiative();
         if (this.hasAWeapon()) {
-            return this.weapon.attack();
+            return that.weapon.attack();
         }
         return CharacterConsts.DefaultPower;
     }
