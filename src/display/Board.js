@@ -1,17 +1,21 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import './Board.css'
-import Team from './TeamDisplay'
+import './Board.css';
+import Team from './TeamDisplay';
+import Prompt from './Prompt';
 
 class Board extends React.Component {
     render() {
         return (
-            <Container className="board-style">
-                <Team />
-                <br />
-                <br />
-                <Team />
-            </Container>
+            <div>
+                <Container className='board-style'>
+                    <Team />
+                    <br />
+                    <br />
+                    <Team />
+                </Container>
+                <Prompt />
+            </div>
         );
     }
 }

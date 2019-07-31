@@ -11,3 +11,8 @@
     align-items: center;
     text-align: center;
 }
+
+.prompt-style {
+    position: absolute;
+    background-color: red;
+}
