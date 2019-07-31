@@ -39,11 +39,11 @@ class Team {
 
     getNbAlive() {
         let cpt = 0;
-        team.forEach(character => {
+        this.team.forEach(character => {
             if (!character.isDead()) {
                 cpt++;
             }
-        })
+        });
         return cpt;
     }
 }

@@ -24,13 +24,7 @@ class AbstractUser {
     }
 
     getNbAlive() {
-        let cpt = 0;
-        this.team.team.forEach(character => {
-            if (!character.isDead()) {
-                cpt++;
-            }
-        });
-        return cpt;
+        return this.team.getNbAlive();
     }
 }
 

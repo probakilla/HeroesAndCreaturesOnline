@@ -80,4 +80,16 @@ describe('Team tests', () => {
         const character = fixture.getNextToAttack();
         expect(character.getHealth()).toEqual(MaxTeamLength);
     });
+
+    it('Team get nb alive test', () => {
+        expect(fixture.getNbAlive()).toEqual(0);
+        fixture.insertCharacter(new Character(1, 1));
+        expect(fixture.getNbAlive()).toEqual(1);
+        fixture.insertCharacter(new Character(1, 1));
+        expect(fixture.getNbAlive()).toEqual(2);
+        fixture.insertCharacter(new Character(1, 1));
+        expect(fixture.getNbAlive()).toEqual(3);
+        fixture.insertCharacter(new Character(1, 1));
+        expect(fixture.getNbAlive()).toEqual(4);
+    })
 });
