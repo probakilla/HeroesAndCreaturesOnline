@@ -70,4 +70,14 @@ describe('Team tests', () => {
     });
 
     // Team getNextToAttack
+    it('Team get next to attack empty', () => {
+        expect(fixture.getNextToAttack()).toEqual(null);
+    })
+
+    it('Team get next to attack full team', () => {
+        fillUpTeam();
+        fixture.increaseAllInitiative();
+        const character = fixture.getNextToAttack();
+        expect(character.getHealth()).toEqual(MaxTeamLength);
+    })
 });
