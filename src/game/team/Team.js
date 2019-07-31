@@ -1,6 +1,5 @@
-import Character from '../character/Character'
 import TeamConsts from './TeamConsts';
-import { areCharacters } from '../TypeChecker';
+import { isCharacter } from '../TypeChecker';
 
 class Team {
     constructor() {
@@ -8,9 +7,11 @@ class Team {
     }
 
     insertCharacter(character) {
-        areCharacters(character);
+        isCharacter(character);
         if (!this.isFull()) {
             this.team.push(character);
+        } else {
+            throw new Error('Team is full');
         }
     }
 

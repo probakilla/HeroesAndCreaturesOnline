@@ -15,10 +15,8 @@ export function isWeapon(weapon) {
     }
 }
 
-export function areCharacters() {
-    [].forEach.call(arguments, element => {
-        if (!(element instanceof Character)) {
-            throw new TypeError('Not a character');
-        }
-    });
+export function isCharacter(character) {
+    if (!(character instanceof Character)) {
+        throw new TypeError('Not a character');
+    }
 }

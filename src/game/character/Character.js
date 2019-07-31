@@ -1,6 +1,5 @@
 import CharacterConsts from './CharacterConsts';
 import CharacterStats from './CharacterStats';
-import Weapon from '../Weapon/Weapon';
 import { areNumbers, isWeapon } from '../TypeChecker';
 
 class Character {
