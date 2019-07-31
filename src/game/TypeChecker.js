@@ -1,5 +1,6 @@
 import Character from './character/Character';
-import Weapon from './Weapon/Weapon';
+import Weapon from './weapon/Weapon';
+import Team from './team/Team';
 
 export function areNumbers() {
     [].forEach.call(arguments, element => {
@@ -18,5 +19,11 @@ export function isWeapon(weapon) {
 export function isCharacter(character) {
     if (!(character instanceof Character)) {
         throw new TypeError('Not a character');
+    }
+}
+
+export function isTeam(team) {
+    if (!(team instanceof Team)){
+        throw new TypeError('Not a team');
     }
 }
