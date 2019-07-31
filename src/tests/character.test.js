@@ -1,5 +1,5 @@
 import Character from '../game/character/Character';
-import Weapon from '../game/Weapon/Weapon';
+import Weapon from '../game/weapon/Weapon';
 
 const DefaultStat = 10;
 const DefaultInitiative = 0;

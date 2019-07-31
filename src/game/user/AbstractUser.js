@@ -17,13 +17,21 @@ class AbstractUser {
         this.team.increaseAllInitiative();
     }
 
-    play(oppositeTeam) {
-        throw new Error('Not implemented');
-    }
-
     isTargetValid(oppositeTeam, target) {
         areNumbers(target);
         isTeam(oppositeTeam);
-        return !oppositeTeam[target].isDead();
+        return !oppositeTeam.team[target].isDead();
+    }
+
+    getNbAlive() {
+        let cpt = 0;
+        this.team.team.forEach(character => {
+            if (!character.isDead()) {
+                cpt++;
+            }
+        });
+        return cpt;
     }
 }
+
+export default AbstractUser;
