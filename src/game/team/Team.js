@@ -1,5 +1,6 @@
 import Character from '../character/Character'
 import TeamConsts from './TeamConsts';
+import { areCharacters } from '../TypeChecker';
 
 class Team {
     constructor() {
@@ -7,7 +8,7 @@ class Team {
     }
 
     insertCharacter(character) {
-        this.characterCheck(character);
+        areCharacters(character);
         if (!this.isFull()) {
             this.team.push(character);
         }
@@ -17,10 +18,22 @@ class Team {
         return this.team.length >= TeamConsts.TeamMaxLength;
     }
 
-    characterCheck(character) {
-        if (!character instanceof Character) {
-            throw new Error('Not a Character');
-        }
+    getNextToAttack() {
+        let maxInitiative = TeamConsts.ImpossibleInitiative;
+        let choosenCharacter = null;
+        this.team.forEach(character => {
+            if (character.getInitiative() > maxInitiative && !character.isDead()) {
+                maxInitiative = character.getInitiative();
+                choosenCharacter = character;
+            }
+        });
+        return choosenCharacter;
+    }
+
+    increaseAllInitiative() {
+        this.team.forEach(character => {
+            character.increaseInitiative();
+        });
     }
 }
 

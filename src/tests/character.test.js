@@ -33,16 +33,20 @@ describe('Character Tests', () => {
     });
 
     it('Character Equip Weapon Type Check Test', () => {
-        const errorFunction = () => {
+        expect(new Weapon(1) instanceof Weapon).toEqual(1234);
+        let errorFunction = () => {
             fixture.equipWeapon('Not a weapon');
         };
         expect(errorFunction).toThrowError(TypeError, 'Not a weapon');
+        errorFunction = () => {
+            fixture.equipWeapon(new Weapon(CharacterConsts.DefaultPower));
+        }
+        expect(errorFunction).not.toThrowError(TypeError);
     });
 
     it('Character Equip Weapon Test', () => {
-        const testWeapon = new Weapon(CharacterConsts.DefaultStat);
         expect(fixture.getPower()).toEqual(CharacterConsts.DefaultPower);
-        fixture.equipWeapon(testWeapon);
+        fixture.equipWeapon(new Weapon(CharacterConsts.DefaultStat));
         expect(fixture.getPower()).toEqual(testWeapon.attack());
     });
 
