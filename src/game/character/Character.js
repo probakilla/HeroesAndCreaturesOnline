@@ -1,6 +1,7 @@
 import CharacterConsts from './CharacterConsts';
 import CharacterStats from './CharacterStats';
-import { areNumbers, areWeapons } from '../TypeChecker';
+import Weapon from '../Weapon/Weapon';
+import { areNumbers, isWeapon } from '../TypeChecker';
 
 class Character {
     constructor(health, agility) {
@@ -34,7 +35,7 @@ class Character {
     }
 
     equipWeapon(weapon) {
-        areWeapons(weapon);
+        isWeapon(weapon);
         this.weapon = weapon;
     }
 
