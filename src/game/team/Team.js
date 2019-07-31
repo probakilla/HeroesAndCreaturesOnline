@@ -36,6 +36,16 @@ class Team {
             character.increaseInitiative();
         });
     }
+
+    getNbAlive() {
+        let cpt = 0;
+        team.forEach(character => {
+            if (!character.isDead()) {
+                cpt++;
+            }
+        })
+        return cpt;
+    }
 }
 
 export default Team;
