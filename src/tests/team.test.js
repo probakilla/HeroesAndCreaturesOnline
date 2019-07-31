@@ -2,6 +2,7 @@ import Team from '../game/team/Team';
 import Character from '../game/character/Character';
 
 const MaxTeamLength = 4;
+const DefaultInit = 0;
 
 describe('Team tests', () => {
     let fixture;
@@ -14,10 +15,17 @@ describe('Team tests', () => {
         fixture = null;
     });
 
+    function fillUpTeam() {
+        for (let i = 0; i < MaxTeamLength; ++i) {
+            fixture.insertCharacter(new Character(i + 1, i + 1));
+        }
+    }
+
     it('Team initialization test', () => {
         expect(Array.isArray(fixture.team)).toEqual(true);
     });
 
+    // Team insert
     it('Team insert success test', () => {
         const success = () => {
             fixture.insertCharacter(new Character(1, 1));
@@ -39,10 +47,8 @@ describe('Team tests', () => {
 
     it('Team full insert test', () => {
         const success = () => {
-            for (let i = 0; i < MaxTeamLength; ++i) {
-                fixture.insertCharacter(new Character(i + 1, i + 1));
-            }
-        }
+            fillUpTeam();
+        };
         expect(success).not.toThrowError();
         expect(fixture.team.length).toEqual(MaxTeamLength);
         const fail = () => {
@@ -50,4 +56,18 @@ describe('Team tests', () => {
         };
         expect(fail).toThrowError('Team is full');
     });
+
+    // Team increaseAllInitiative
+    it('Team increase all initiative test', () => {
+        fillUpTeam();
+        fixture.team.forEach(character => {
+            expect(character.getInitiative()).toEqual(DefaultInit);
+        });
+        fixture.increaseAllInitiative();
+        for (let i = 0; i < MaxTeamLength; ++i) {
+            expect(fixture.team[i].getInitiative()).toEqual(i + 1);
+        }
+    });
+
+    // Team getNextToAttack
 });
