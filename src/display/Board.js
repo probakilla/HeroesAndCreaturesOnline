@@ -6,21 +6,18 @@ import Prompt from './Prompt';
 import { randomTeamGenerator } from '../game/generators/Generator';
 import '../css/Board.css';
 
+const LimitInitiative = 1000;
+
 class Board extends React.Component {
     constructor(props) {
         super(props);
         this.cpuTeam = randomTeamGenerator();
         this.userTeam = randomTeamGenerator();
-        const content = (
-            <div>
-                <Container className='board-style'>
-                    <TeamDisplay team={this.cpuTeam} />
-                    <br />
-                    <TeamDisplay team={this.userTeam} />
-                </Container>
-                <Prompt />
-            </div>
-        );
+        this.state = {
+            cpuRender: <TeamDisplay id='cpu-team' team={this.cpuTeam} />,
+            userRender: <TeamDisplay id='user-team' team={this.userTeam} />
+        };
+        const content = <div />;
         this.state = {
             boardContent: content
         };
@@ -40,10 +37,36 @@ class Board extends React.Component {
         });
     };
 
+    increaseAllInitiative = async () => {
+        while (!this.atLeastOneCanPlay()) {
+            this.cpuTeam.increaseAllInitiative();
+            this.userTeam.increaseAllInitiative();
+        }
+        this.setState({
+            cpuRender: <TeamDisplay id='cpu-team' team={this.cpuTeam} />,
+            userRender: <TeamDisplay id='user-team' team={this.userTeam} />
+        });
+    };
+
+    atLeastOneCanPlay = () => {
+        const cpu = this.cpuTeam.getNextToAttack().getInitiative();
+        const player = this.userTeam.getNextToAttack().getInitiative();
+        return cpu >= LimitInitiative || player >= LimitInitiative;
+    };
+
+    testGet = () => {
+        return this.cpuTeam.getNextToAttack().getInitiative();
+    };
+
     render() {
         return (
             <div id='board' onClick={this.checkVictory}>
-                {this.state.boardContent}
+                <Container className='board-style'>
+                    {this.state.cpuRender}
+                    <br />
+                    {this.state.userRender}
+                </Container>
+                <Prompt />
             </div>
         );
     }

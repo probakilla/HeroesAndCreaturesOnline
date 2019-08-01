@@ -2,8 +2,8 @@ import Character from '../character/Character';
 import Weapon from '../weapon/Weapon'
 import Team from '../team/Team';
 
-const MinStat = 1;
-const MaxStat = 2;
+const MinStat = 10;
+const MaxStat = 100;
 const MaxWeapon = 40;
 const MaxTeamLength = 4;
 

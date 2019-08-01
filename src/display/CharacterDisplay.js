@@ -31,6 +31,13 @@ class CharacterDisplay extends React.Component {
         }
     }
 
+    increaseInitiative = () => {
+        this.character.increaseInitiative();
+        this.setState({
+            characterDisplay: this.character.toString()
+        })
+    }
+
     render() {
         return (
             <Col data-testid="character-display" onClick={this.handleClick}>

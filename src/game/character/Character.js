@@ -78,9 +78,13 @@ class Character {
     }
 
     toString = () => {
+        let initiative = this.getInitiative();
+        if (initiative > CharacterConsts.LimitInitiative) {
+            initiative = CharacterConsts.LimitInitiative;
+        }
         let charString = 'Health: ' + this.stats.health;
         charString += ' Weapon: ' + this.getPower();
-        charString += ' Init: ' + this.stats.initiative;
+        charString += ' Init: ' + initiative;
         return charString;
     }
 }
