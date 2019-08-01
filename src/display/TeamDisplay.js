@@ -6,15 +6,22 @@ class TeamDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.team = props.team;
+        this.characters = [];
+    }
+
+    refreshAllCharacters = () => {
+        this.characters.forEach(character => {
+            character.refreshStats();
+        })
     }
 
     render() {
         return (
             <Row data-testid="team-display">
-                <CharacterDisplay character={this.team.team[0]} />
-                <CharacterDisplay character={this.team.team[1]} />
-                <CharacterDisplay character={this.team.team[2]} />
-                <CharacterDisplay character={this.team.team[3]} />
+                <CharacterDisplay ref={child => (this.characters.push(child)) } character={this.team.team[0]} />
+                <CharacterDisplay ref={child => (this.characters.push(child))} character={this.team.team[1]} />
+                <CharacterDisplay ref={child => (this.characters.push(child))} character={this.team.team[2]} />
+                <CharacterDisplay ref={child => (this.characters.push(child))} character={this.team.team[3]} />
             </Row>
         );
     }

@@ -13,14 +13,6 @@ class Board extends React.Component {
         super(props);
         this.cpuTeam = randomTeamGenerator();
         this.userTeam = randomTeamGenerator();
-        this.state = {
-            cpuRender: <TeamDisplay id='cpu-team' team={this.cpuTeam} />,
-            userRender: <TeamDisplay id='user-team' team={this.userTeam} />
-        };
-        const content = <div />;
-        this.state = {
-            boardContent: content
-        };
     }
 
     checkVictory = () => {
@@ -42,10 +34,18 @@ class Board extends React.Component {
             this.cpuTeam.increaseAllInitiative();
             this.userTeam.increaseAllInitiative();
         }
-        this.setState({
-            cpuRender: <TeamDisplay id='cpu-team' team={this.cpuTeam} />,
-            userRender: <TeamDisplay id='user-team' team={this.userTeam} />
-        });
+        this.refreshTeams();
+    };
+
+    computerAttack = (target, power) => {
+        alert(this.userTeam.team[target].getHealth());
+        this.userTeam.team[target].block(power);
+        this.refreshTeams();
+    };
+
+    refreshTeams = () => {
+        this.cpuTeamRender.refreshAllCharacters();
+        this.userTeamRender.refreshAllCharacters();
     };
 
     atLeastOneCanPlay = () => {
@@ -54,17 +54,28 @@ class Board extends React.Component {
         return cpu >= LimitInitiative || player >= LimitInitiative;
     };
 
-    testGet = () => {
-        return this.cpuTeam.getNextToAttack().getInitiative();
+    getNextToATtack = () => {
+        const cpu = this.cpuTeam.getNextToAttack().getInitiative();
+        const player = this.userTeam.getNextToAttack().getInitiative();
+        if (player > cpu) {
+            return this.userTeam.getNextToAttack();
+        }
+        return this.cpuTeam.getNextToAttack();
+    };
+
+    isPlayerTurn = () => {
+        const cpu = this.cpuTeam.getNextToAttack().getInitiative();
+        const player = this.userTeam.getNextToAttack().getInitiative();
+        return cpu < player;
     };
 
     render() {
         return (
             <div id='board' onClick={this.checkVictory}>
                 <Container className='board-style'>
-                    {this.state.cpuRender}
+                    <TeamDisplay ref={child => (this.cpuTeamRender = child)} team={this.cpuTeam} />
                     <br />
-                    {this.state.userRender}
+                    <TeamDisplay ref={child => (this.userTeamRender = child)} team={this.userTeam} />
                 </Container>
                 <Prompt />
             </div>

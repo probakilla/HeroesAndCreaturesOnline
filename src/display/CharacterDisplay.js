@@ -17,7 +17,7 @@ class CharacterDisplay extends React.Component {
 
     handleClick = () => {
         this.blockDamages();
-    }
+    };
 
     blockDamages = () => {
         this.character.block(10);
@@ -26,24 +26,37 @@ class CharacterDisplay extends React.Component {
         });
         if (this.character.isDead()) {
             this.setState({
-                image: <img src={RipImage} alt="dead-character"/>
+                image: <img src={RipImage} alt='dead-character' />
             });
         }
-    }
+    };
 
     increaseInitiative = () => {
         this.character.increaseInitiative();
         this.setState({
             characterDisplay: this.character.toString()
-        })
-    }
+        });
+    };
+
+    refreshStats = () => {
+        this.setState({
+            characterDisplay: this.character.toString()
+        });
+        if (this.character.isDead()) {
+            this.setState({
+                image: <img src={RipImage} alt='dead-character' />
+            });
+        }
+    };
 
     render() {
         return (
-            <Col data-testid="character-display" onClick={this.handleClick}>
+            <Col data-testid='character-display' onClick={this.handleClick}>
                 {this.state.image}
                 <br />
-                <p className='character-text' data-testid="char-stats">{this.state.characterDisplay}</p>
+                <p className='character-text' data-testid='char-stats'>
+                    {this.state.characterDisplay}
+                </p>
             </Col>
         );
     }

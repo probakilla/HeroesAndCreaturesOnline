@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import Board from './display/Board';
 
 class GameScript {
-    startGame = async () => {
+    startGame = () => {
         this.renderElements();
-        await this.board.increaseAllInitiative();
+        this.board.increaseAllInitiative();
+        this.board.computerAttack(0, 100);
     };
 
     renderElements = () => {
