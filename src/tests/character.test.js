@@ -118,7 +118,7 @@ describe('Character tests', () => {
     });
 
     it('Character toString test', () => {
-        const str = 'Health: 10 Agility: 10 Weapon: 1';
+        const str = 'Health: 10 Weapon: 1 Init: 0';
         expect(fixture.toString()).toEqual(str);
     });
 

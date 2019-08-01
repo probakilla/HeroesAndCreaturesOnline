@@ -79,8 +79,8 @@ class Character {
 
     toString = () => {
         let charString = 'Health: ' + this.stats.health;
-        charString += ' Agility: ' + this.stats.agility;
         charString += ' Weapon: ' + this.getPower();
+        charString += ' Init: ' + this.stats.initiative;
         return charString;
     }
 }
