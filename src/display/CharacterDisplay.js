@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import '../css/Character.css';
-require('dotenv').config();
 
 const CharacterImgUrl = process.env.PUBLIC_URL + '/images/character.png';
 const RipImage = process.env.PUBLIC_URL + '/images/rip.png';
@@ -12,7 +11,7 @@ class CharacterDisplay extends React.Component {
         this.character = props.character;
         this.state = {
             characterDisplay: this.character.toString(),
-            image: <img src={CharacterImgUrl} alt='character' />
+            image: <img src={CharacterImgUrl} alt='alive-character' />
         };
     }
 
@@ -27,17 +26,17 @@ class CharacterDisplay extends React.Component {
         });
         if (this.character.isDead()) {
             this.setState({
-                image: <img src={RipImage} alt="dead"/>
+                image: <img src={RipImage} alt="dead-character"/>
             });
         }
     }
 
     render() {
         return (
-            <Col onClick={this.handleClick}>
+            <Col data-testid="character-display" onClick={this.handleClick}>
                 {this.state.image}
                 <br />
-                <p className='character-text'>{this.state.characterDisplay}</p>
+                <p className='character-text' data-testid="char-stats">{this.state.characterDisplay}</p>
             </Col>
         );
     }

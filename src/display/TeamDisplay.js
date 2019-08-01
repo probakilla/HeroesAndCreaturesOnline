@@ -11,7 +11,7 @@ class TeamDisplay extends React.Component {
 
     render() {
         return (
-            <Row>
+            <Row data-testid="team-display">
                 <CharacterDisplay character={this.team.team[0]}/>
                 <CharacterDisplay character={this.team.team[1]}/>
                 <CharacterDisplay character={this.team.team[2]}/>
