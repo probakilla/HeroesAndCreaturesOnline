@@ -19,14 +19,8 @@ class Board extends React.Component {
         let cpuCount = this.cpuTeam.getNbAlive();
         let userCount = this.userTeam.getNbAlive();
         if (cpuCount === 0 || userCount === 0) {
-            this.displayVictory();
+            alert('game over');
         }
-    };
-
-    displayVictory = () => {
-        this.setState({
-            boardContent: <VictoryDisplay winner='user' />
-        });
     };
 
     increaseAllInitiative = async () => {
@@ -38,7 +32,6 @@ class Board extends React.Component {
     };
 
     computerAttack = (target, power) => {
-        alert(this.userTeam.team[target].getHealth());
         this.userTeam.team[target].block(power);
         this.refreshTeams();
     };
