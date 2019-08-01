@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import './Character.css';
+import '../css/Character.css';
+require('dotenv').config();
 
 const CharacterImgUrl = process.env.PUBLIC_URL + '/images/character.png';
 const RipImage = process.env.PUBLIC_URL + '/images/rip.png';

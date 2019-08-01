@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import './Board.css';
 import Team from './TeamDisplay';
 import Prompt from './Prompt';
+import '../css/Board.css';
 
 class Board extends React.Component {
     render() {
