@@ -9,21 +9,21 @@ class AbstractUser {
         this.team = team;
     }
 
-    getNextToAttack() {
+    getNextToAttack = () => {
         return this.team.getNextToAttack();
     }
 
-    increaseAllInitiative() {
+    increaseAllInitiative = () => {
         this.team.increaseAllInitiative();
     }
 
-    isTargetValid(oppositeTeam, target) {
+    isTargetValid = (oppositeTeam, target) => {
         areNumbers(target);
         isTeam(oppositeTeam);
         return !oppositeTeam.team[target].isDead();
     }
 
-    getNbAlive() {
+    getNbAlive = () => {
         return this.team.getNbAlive();
     }
 }

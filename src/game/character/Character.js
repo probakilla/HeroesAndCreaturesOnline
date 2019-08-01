@@ -9,23 +9,23 @@ class Character {
         this.weapon = null;
     }
 
-    getMaxHealth() {
+    getMaxHealth = () => {
         return this.stats.maxHealth;
     }
 
-    getHealth() {
+    getHealth = () => {
         return this.stats.health;
     }
 
-    getAgility() {
+    getAgility= () => {
         return this.stats.agility;
     }
 
-    getInitiative() {
+    getInitiative = () => {
         return this.stats.initiative;
     }
 
-    getPower() {
+    getPower = () => {
         if (!this.weapon) {
             return CharacterConsts.DefaultPower;
         } else {
@@ -33,16 +33,16 @@ class Character {
         }
     }
 
-    equipWeapon(weapon) {
+    equipWeapon = weapon => {
         isWeapon(weapon);
         this.weapon = weapon;
     }
 
-    unequipWeapon() {
+    unequipWeapon = () => {
         this.weapon = null;
     }
 
-    attack() {
+    attack = () => {
         this.resetInitiative();
         if (this.hasAWeapon()) {
             return this.weapon.attack();
@@ -50,15 +50,15 @@ class Character {
         return CharacterConsts.DefaultPower;
     }
 
-    resetInitiative() {
+    resetInitiative = () => {
         this.stats.initiative = CharacterConsts.DefaultInitative;
     }
 
-    hasAWeapon() {
+    hasAWeapon = () => {
         return this.weapon !== null;
     }
 
-    block(amount) {
+    block = amount => {
         areNumbers(amount);
         this.stats.health -= amount;
         if (this.stats.health < CharacterConsts.MinimumHealth) {
@@ -66,7 +66,7 @@ class Character {
         }
     }
 
-    isDead() {
+    isDead = () => {
         return this.stats.health <= CharacterConsts.MinimumHealth;
     }
 
@@ -77,7 +77,7 @@ class Character {
         }
     }
 
-    toString() {
+    toString = () => {
         let charString = 'Health: ' + this.stats.health;
         charString += ' Agility: ' + this.stats.agility;
         charString += ' Weapon: ' + this.getPower();

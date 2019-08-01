@@ -11,7 +11,7 @@ class ComputerUser extends AbstractUser {
         super(team);
     }
 
-    play(oppositeTeam) {
+    play = oppositeTeam => {
         isTeam(oppositeTeam);
         let next = this.getNextToAttack();
         let choice;

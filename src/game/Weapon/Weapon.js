@@ -3,7 +3,7 @@ class Weapon {
         this.power = power;
     }
 
-    attack() {
+    attack = () => {
         return this.power;
     }
 }

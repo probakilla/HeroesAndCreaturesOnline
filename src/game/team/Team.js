@@ -6,7 +6,7 @@ class Team {
         this.team = [];
     }
 
-    insertCharacter(character) {
+    insertCharacter = character => {
         isCharacter(character);
         if (!this.isFull()) {
             this.team.push(character);
@@ -15,11 +15,11 @@ class Team {
         }
     }
 
-    isFull() {
+    isFull = () => {
         return this.team.length >= TeamConsts.TeamMaxLength;
     }
 
-    getNextToAttack() {
+    getNextToAttack = () => {
         let maxInitiative = TeamConsts.ImpossibleInitiative;
         let choosenCharacter = null;
         this.team.forEach(character => {
@@ -31,13 +31,13 @@ class Team {
         return choosenCharacter;
     }
 
-    increaseAllInitiative() {
+    increaseAllInitiative = () => {
         this.team.forEach(character => {
             character.increaseInitiative();
         });
     }
 
-    getNbAlive() {
+    getNbAlive = () => {
         let cpt = 0;
         this.team.forEach(character => {
             if (!character.isDead()) {
