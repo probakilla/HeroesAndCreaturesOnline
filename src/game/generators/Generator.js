@@ -1,9 +1,9 @@
 import Character from '../character/Character';
-import Weapon from '../weapon/Weapon'
+import Weapon from '../weapon/Weapon';
 import Team from '../team/Team';
 
 const MinStat = 10;
-const MaxStat = 10;
+const MaxStat = 100;
 const MaxWeapon = 40;
 const MaxTeamLength = 4;
 
@@ -21,6 +21,6 @@ export function randomTeamGenerator() {
     return team;
 }
 
-function getRandomInteger(min, max) {
-    return Math.floor(Math.random() * (max- min) + min);
+export function getRandomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
 }

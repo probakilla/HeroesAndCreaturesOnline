@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Jumbotron } from 'react-bootstrap';
 import '../css/VictoryDisplay.css'
 
 class VictoryDisplay extends React.Component {
@@ -9,13 +10,19 @@ class VictoryDisplay extends React.Component {
         };
     }
 
+    reloadGame = () => {
+        window.location.reload();
+    }
+
     render() {
         return (
-            <div className="victory-style">
+            <Jumbotron className="victory-style">
                 <p className="victory-header">Game over</p>
                 <br />
                 <p className="winner-text">{this.state.winner} won</p>
-            </div>
+                <hr/>
+                <Button variant="secondary" onClick={this.reloadGame}>Replay ?</Button>
+            </Jumbotron>
         );
     }
 }

@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import './css/index.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-const game = new GameScript();
+let game = new GameScript();
 game.startGame();
 
 // If you want your app to work offline and load faster, you can change

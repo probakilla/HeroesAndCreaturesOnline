@@ -4,9 +4,9 @@ import Board from './display/Board';
 
 class GameScript {
     startGame = () => {
+        window.gameScript = this;
         this.renderElements();
         this.playTurn();
-        window.gameScript = this;
     };
 
     playTurn = () => {
@@ -18,8 +18,6 @@ class GameScript {
             } else {
                 this.computerTurn();
             }
-        } else {
-            
         }
     };
 

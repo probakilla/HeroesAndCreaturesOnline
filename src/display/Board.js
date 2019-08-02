@@ -1,13 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 import { Container } from 'react-bootstrap';
 import TeamDisplay from './TeamDisplay';
 import VictoryDisplay from './VictoryDisplay';
 import Prompt from './Prompt';
-import { randomTeamGenerator } from '../game/generators/Generator';
+import { randomTeamGenerator, getRandomInteger } from '../game/generators/Generator';
 import '../css/Board.css';
 
 const LimitInitiative = 1000;
+const WaitingTime = 3000;
+
+const sleep = milliseconds => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+};
 
 class Board extends React.Component {
     constructor(props) {
@@ -98,6 +103,27 @@ class Board extends React.Component {
         this.currentCharacter.resetInitiative();
         this.changePrompt('Cpu turn: Power -> ' + power);
         this.userTeamRender.enableClick(power);
+        this.cpuMakeChoice();
+    };
+
+    getAliveTarget = () => {
+        let targets = [];
+        for (let i = 0; i < this.userTeam.team.length; ++i) {
+            if (!this.userTeam.team[i].isDead()) {
+                targets.push(i);
+            }
+        }
+        return targets;
+    };
+
+    cpuMakeChoice = async () => {
+        const targets = this.getAliveTarget();
+        const choice = getRandomInteger(0, targets.length);
+        const target = targets[choice];
+        const element = document.getElementById('char-' + (target + 4));
+        this.changePrompt('Cpu attacked: ' + target + ' with a power of ' + this.currentCharacter.getPower());
+        await sleep(WaitingTime);
+        element.click();
     };
 
     blockPlayers = () => {

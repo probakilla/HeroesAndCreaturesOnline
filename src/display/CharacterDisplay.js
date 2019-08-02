@@ -23,7 +23,6 @@ class CharacterDisplay extends React.Component {
     };
 
     blockDamages = () => {
-        console.log(this.state.id);
         if (!this.character.isDead()) {
             this.character.block(this.block);
             this.setState({

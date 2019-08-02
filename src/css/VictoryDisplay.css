@@ -1,8 +1,16 @@
 .victory-style {
     margin-top: 5rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    color: black;
+    background-color: rgb(94, 94, 94);
     font-family: "Lucida Console";
-    border: 3px solid #6d6d6d;
+    border: 3px solid #2e2e2e;
     border-radius: 10px;
+}
+
+.victory-style p {
+    color: black;
 }
 
 .victory-header {
