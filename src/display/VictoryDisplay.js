@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/VictoryDisplay.css'
 
 class VictoryDisplay extends React.Component {
     constructor(props) {
@@ -10,10 +11,10 @@ class VictoryDisplay extends React.Component {
 
     render() {
         return (
-            <div>
-                <p>Game over</p>
+            <div className="victory-style">
+                <p className="victory-header">Game over</p>
                 <br />
-                <p>{this.state.winner} won</p>
+                <p className="winner-text">{this.state.winner} won</p>
             </div>
         );
     }

@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import { Container } from 'react-bootstrap';
 import TeamDisplay from './TeamDisplay';
+import VictoryDisplay from './VictoryDisplay';
 import Prompt from './Prompt';
 import { randomTeamGenerator } from '../game/generators/Generator';
 import '../css/Board.css';
@@ -19,7 +21,13 @@ class Board extends React.Component {
         let cpuCount = this.cpuTeam.getNbAlive();
         let userCount = this.userTeam.getNbAlive();
         if (cpuCount === 0 || userCount === 0) {
-            alert('game over');
+            const div = document.getElementById('board');
+            div.innerHTML = '';
+            if (this.playerWon()) {
+                ReactDOM.render(<VictoryDisplay winner='user' />, div);
+            } else {
+                ReactDOM.render(<VictoryDisplay winner='cpu' />, div);
+            }
         }
     };
 
@@ -27,6 +35,11 @@ class Board extends React.Component {
         let cpuCount = this.cpuTeam.getNbAlive();
         let userCount = this.userTeam.getNbAlive();
         return cpuCount === 0 || userCount === 0;
+    };
+
+    playerWon = () => {
+        let cpuCount = this.cpuTeam.getNbAlive();
+        return cpuCount === 0;
     };
 
     increaseAllInitiative = () => {
@@ -71,7 +84,26 @@ class Board extends React.Component {
 
     changePrompt = message => {
         this.prompt.updateText(message);
-    }
+    };
+
+    allowUserPlay = () => {
+        let power = this.currentCharacter.getPower();
+        this.currentCharacter.resetInitiative();
+        this.changePrompt('User turn: Power -> ' + power);
+        this.cpuTeamRender.enableClick(power);
+    };
+
+    allowCpuPlay = () => {
+        let power = this.currentCharacter.getPower();
+        this.currentCharacter.resetInitiative();
+        this.changePrompt('Cpu turn: Power -> ' + power);
+        this.userTeamRender.enableClick(power);
+    };
+
+    blockPlayers = () => {
+        this.userTeamRender.disableClick();
+        this.cpuTeamRender.disableClick();
+    };
 
     render() {
         return (
@@ -81,7 +113,7 @@ class Board extends React.Component {
                     <br />
                     <TeamDisplay ref={child => (this.userTeamRender = child)} team={this.userTeam} isPlayer={true} />
                 </Container>
-                <Prompt ref={child => (this.prompt = child)}/>
+                <Prompt ref={child => (this.prompt = child)} />
             </div>
         );
     }

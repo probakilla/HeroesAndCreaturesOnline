@@ -2,7 +2,7 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 import CharacterDisplay from './CharacterDisplay';
 
-const TeamMaxLength = 4
+const TeamMaxLength = 4;
 
 class TeamDisplay extends React.Component {
     constructor(props) {
@@ -22,6 +22,18 @@ class TeamDisplay extends React.Component {
         let baseStr = 'char-';
         baseStr += place + this.isPlayer * TeamMaxLength;
         return baseStr;
+    };
+
+    enableClick = power => {
+        this.characters.forEach(character => {
+            character.enableOnClick(power);
+        });
+    };
+
+    disableClick = () => {
+        this.characters.forEach(character => {
+            character.disableOnClick();
+        });
     };
 
     render() {

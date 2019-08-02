@@ -3,7 +3,7 @@ import Weapon from '../weapon/Weapon'
 import Team from '../team/Team';
 
 const MinStat = 10;
-const MaxStat = 100;
+const MaxStat = 10;
 const MaxWeapon = 40;
 const MaxTeamLength = 4;
 

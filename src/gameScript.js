@@ -5,24 +5,31 @@ import Board from './display/Board';
 class GameScript {
     startGame = () => {
         this.renderElements();
-        while (!this.board.isGameOver()) {
+        this.playTurn();
+        window.gameScript = this;
+    };
+
+    playTurn = () => {
+        if (!this.board.isGameOver()) {
+            this.board.blockPlayers();
             this.board.increaseAllInitiative();
             if (this.board.isPlayerTurn()) {
                 this.userTurn();
-                break;
             } else {
                 this.computerTurn();
-                break;
             }
+        } else {
+            
         }
     };
 
     userTurn = () => {
-        this.board.changePrompt('User turn: Please click on an enemy character');
+        this.board.allowUserPlay();
     };
 
     computerTurn = () => {
         this.board.changePrompt('Computer turn');
+        this.board.allowCpuPlay();
     };
 
     renderElements = () => {

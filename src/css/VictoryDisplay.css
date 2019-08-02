@@ -1,0 +1,14 @@
+.victory-style {
+    margin-top: 5rem;
+    font-family: "Lucida Console";
+    border: 3px solid #6d6d6d;
+    border-radius: 10px;
+}
+
+.victory-header {
+    font-size: 40px;
+}
+
+.winner-text {
+    font-size: 30px;
+}
