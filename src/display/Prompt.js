@@ -9,9 +9,15 @@ class Prompt extends React.Component {
         };
     }
 
+    updateText = message => {
+        this.setState({
+            text: message
+        });
+    };
+
     render() {
         return (
-            <div className="prompt-style">
+            <div className='prompt-style'>
                 <p>{this.state.text}</p>
             </div>
         );

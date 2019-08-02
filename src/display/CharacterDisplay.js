@@ -11,7 +11,8 @@ class CharacterDisplay extends React.Component {
         this.character = props.character;
         this.state = {
             characterDisplay: this.character.toString(),
-            image: <img src={CharacterImgUrl} alt='alive-character' />
+            image: <img src={CharacterImgUrl} alt='alive-character' />,
+            id: props.id
         };
     }
 
@@ -26,7 +27,8 @@ class CharacterDisplay extends React.Component {
         });
         if (this.character.isDead()) {
             this.setState({
-                image: <img src={RipImage} alt='dead-character' />
+                image: <img src={RipImage} alt='dead-character' />,
+                characterDisplay: this.character.toString()
             });
         }
     };
@@ -51,10 +53,10 @@ class CharacterDisplay extends React.Component {
 
     render() {
         return (
-            <Col data-testid='character-display' onClick={this.handleClick}>
+            <Col id={this.state.id} data-testid='character-display' onClick={this.handleClick}>
                 {this.state.image}
                 <br />
-                <p className='character-text' data-testid='char-stats'>
+                <p id={this.state.id + '-stats'} className='character-text' data-testid='char-stats'>
                     {this.state.characterDisplay}
                 </p>
             </Col>

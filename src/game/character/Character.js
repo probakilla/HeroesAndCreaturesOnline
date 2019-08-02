@@ -11,19 +11,19 @@ class Character {
 
     getMaxHealth = () => {
         return this.stats.maxHealth;
-    }
+    };
 
     getHealth = () => {
         return this.stats.health;
-    }
+    };
 
-    getAgility= () => {
+    getAgility = () => {
         return this.stats.agility;
-    }
+    };
 
     getInitiative = () => {
         return this.stats.initiative;
-    }
+    };
 
     getPower = () => {
         if (!this.weapon) {
@@ -31,16 +31,16 @@ class Character {
         } else {
             return this.weapon.attack();
         }
-    }
+    };
 
     equipWeapon = weapon => {
         isWeapon(weapon);
         this.weapon = weapon;
-    }
+    };
 
     unequipWeapon = () => {
         this.weapon = null;
-    }
+    };
 
     attack = () => {
         this.resetInitiative();
@@ -48,15 +48,15 @@ class Character {
             return this.weapon.attack();
         }
         return CharacterConsts.DefaultPower;
-    }
+    };
 
     resetInitiative = () => {
         this.stats.initiative = CharacterConsts.DefaultInitative;
-    }
+    };
 
     hasAWeapon = () => {
         return this.weapon !== null;
-    }
+    };
 
     block = amount => {
         areNumbers(amount);
@@ -64,11 +64,11 @@ class Character {
         if (this.stats.health < CharacterConsts.MinimumHealth) {
             this.stats.health = CharacterConsts.MinimumHealth;
         }
-    }
+    };
 
     isDead = () => {
         return this.stats.health <= CharacterConsts.MinimumHealth;
-    }
+    };
 
     increaseInitiative() {
         this.stats.initiative += this.stats.agility;
@@ -78,15 +78,18 @@ class Character {
     }
 
     toString = () => {
-        let initiative = this.getInitiative();
-        if (initiative > CharacterConsts.LimitInitiative) {
-            initiative = CharacterConsts.LimitInitiative;
+        if (!this.isDead()) {
+            let initiative = this.getInitiative();
+            if (initiative > CharacterConsts.LimitInitiative) {
+                initiative = CharacterConsts.LimitInitiative;
+            }
+            let charString = 'Health: ' + this.stats.health;
+            charString += ' Weapon: ' + this.getPower();
+            charString += ' Init: ' + initiative;
+            return charString;
         }
-        let charString = 'Health: ' + this.stats.health;
-        charString += ' Weapon: ' + this.getPower();
-        charString += ' Init: ' + initiative;
-        return charString;
-    }
+        return 'DEAD';
+    };
 }
 
 export default Character;

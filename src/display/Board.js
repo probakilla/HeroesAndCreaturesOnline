@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import TeamDisplay from './TeamDisplay';
-import VictoryDisplay from './VictoryDisplay';
 import Prompt from './Prompt';
 import { randomTeamGenerator } from '../game/generators/Generator';
 import '../css/Board.css';
@@ -13,6 +12,7 @@ class Board extends React.Component {
         super(props);
         this.cpuTeam = randomTeamGenerator();
         this.userTeam = randomTeamGenerator();
+        this.currentCharacter = null;
     }
 
     checkVictory = () => {
@@ -23,11 +23,18 @@ class Board extends React.Component {
         }
     };
 
-    increaseAllInitiative = async () => {
+    isGameOver = () => {
+        let cpuCount = this.cpuTeam.getNbAlive();
+        let userCount = this.userTeam.getNbAlive();
+        return cpuCount === 0 || userCount === 0;
+    };
+
+    increaseAllInitiative = () => {
         while (!this.atLeastOneCanPlay()) {
             this.cpuTeam.increaseAllInitiative();
             this.userTeam.increaseAllInitiative();
         }
+        this.currentCharacter = this.getNextToATtack();
         this.refreshTeams();
     };
 
@@ -62,15 +69,19 @@ class Board extends React.Component {
         return cpu < player;
     };
 
+    changePrompt = message => {
+        this.prompt.updateText(message);
+    }
+
     render() {
         return (
             <div id='board' onClick={this.checkVictory}>
                 <Container className='board-style'>
-                    <TeamDisplay ref={child => (this.cpuTeamRender = child)} team={this.cpuTeam} />
+                    <TeamDisplay ref={child => (this.cpuTeamRender = child)} team={this.cpuTeam} isPlayer={false} />
                     <br />
-                    <TeamDisplay ref={child => (this.userTeamRender = child)} team={this.userTeam} />
+                    <TeamDisplay ref={child => (this.userTeamRender = child)} team={this.userTeam} isPlayer={true} />
                 </Container>
-                <Prompt />
+                <Prompt ref={child => (this.prompt = child)}/>
             </div>
         );
     }
