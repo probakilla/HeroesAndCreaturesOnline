@@ -1,22 +1,30 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
+import { getRandomInteger } from '../game/generators/Generator';
 import '../css/Character.css';
 
-const CharacterImgUrl = process.env.PUBLIC_URL + '/images/character.png';
-const RipImage = process.env.PUBLIC_URL + '/images/rip.png';
+const ImgPath = process.env.PUBLIC_URL + '/images/';
+const RipImage = ImgPath + 'rip.png';
 const NoDamages = 0;
+const ImgList = ['character.png', 'archer.png', 'wizzard.png', 'rogue.png'];
 
 class CharacterDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.character = props.character;
         this.block = NoDamages;
+        this.spriteUrl = this.randomCharacterImgPath();
         this.state = {
             characterDisplay: this.character.toString(),
-            image: <img src={CharacterImgUrl} alt='alive-character' />,
+            image: <img src={this.spriteUrl} alt='alive-character' />,
             id: props.id
         };
     }
+
+    randomCharacterImgPath = () => {
+        let randomChoice = getRandomInteger(0, ImgList.length);
+        return ImgPath + ImgList[randomChoice];
+    };
 
     handleClick = () => {
         this.blockDamages();
