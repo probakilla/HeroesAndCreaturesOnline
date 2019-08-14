@@ -1,34 +1,25 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import { getRandomInteger } from '../game/generators/Generator';
+import ImageManager from './graphic/ImageManager';
 import sleep from './Sleep';
 import '../css/Character.css';
 
-const ImgPath = process.env.PUBLIC_URL + '/images/';
-const RipImage = ImgPath + 'rip.png';
-const DamagesImage = ImgPath + 'dmg.png';
 const NoDamages = 0;
 const FadeTime = 1000;
 const DmgTime = 200;
-const ImgList = ['warrior.png', 'archer.png', 'wizzard.png', 'rogue.png', 'paladin.png'];
 
 class CharacterDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.character = props.character;
         this.block = NoDamages;
-        this.spriteUrl = this.randomCharacterImgPath();
+        this.spriteUrl = ImageManager.getRandomCharacterImg();
         this.state = {
             characterDisplay: this.character.toString(),
             id: props.id,
             image: <img className='character-img' id={props.id + '-img'} src={this.spriteUrl} alt='alive-character' />
         };
     }
-
-    randomCharacterImgPath = () => {
-        let randomChoice = getRandomInteger(0, ImgList.length);
-        return ImgPath + ImgList[randomChoice];
-    };
 
     handleClick = () => {
         this.blockDamages();
@@ -51,27 +42,29 @@ class CharacterDisplay extends React.Component {
     getImage = () => {
         let id = this.state.id + '-img';
         return document.getElementById(id);
-    }
+    };
 
     fadeOutImage = async () => {
         let image = this.getImage();
         if (image) {
             image.classList.add('fade');
         }
-        await sleep (FadeTime);
+        await sleep(FadeTime);
+        const ripImg = ImageManager.getRipImg();
         this.setState({
-            image: <img src={RipImage} alt='dead-character' />,
+            image: <img src={ripImg} alt='dead-character' />,
             characterDisplay: this.character.toString()
         });
     };
 
     damageAnimation = async () => {
         let image = this.getImage();
-        let saveImg = image.getAttribute('src');
-        image.setAttribute('src', DamagesImage);
+        const saveImg = image.getAttribute('src');
+        const dmgImg = ImageManager.getDmgImg();
+        image.setAttribute('src', dmgImg);
         await sleep(DmgTime);
         image.setAttribute('src', saveImg);
-    }
+    };
 
     increaseInitiative = () => {
         this.character.increaseInitiative();
