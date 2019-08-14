@@ -8,6 +8,10 @@
     transition: opacity 1s;
 }
 
+.damages-img {
+    position: absolute;
+}
+
 .fade {
     opacity: 0;
 }

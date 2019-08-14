@@ -6,8 +6,10 @@ import '../css/Character.css';
 
 const ImgPath = process.env.PUBLIC_URL + '/images/';
 const RipImage = ImgPath + 'rip.png';
+const DamagesImage = ImgPath + 'dmg.png';
 const NoDamages = 0;
 const FadeTime = 1000;
+const DmgTime = 200;
 const ImgList = ['warrior.png', 'archer.png', 'wizzard.png', 'rogue.png', 'paladin.png'];
 
 class CharacterDisplay extends React.Component {
@@ -32,8 +34,9 @@ class CharacterDisplay extends React.Component {
         this.blockDamages();
     };
 
-    blockDamages = () => {
+    blockDamages = async () => {
         if (!this.character.isDead()) {
+            await this.damageAnimation();
             this.character.block(this.block);
             this.setState({
                 characterDisplay: this.character.toString()
@@ -45,9 +48,13 @@ class CharacterDisplay extends React.Component {
         }
     };
 
-    fadeOutImage = async () => {
+    getImage = () => {
         let id = this.state.id + '-img';
-        let image = document.getElementById(id);
+        return document.getElementById(id);
+    }
+
+    fadeOutImage = async () => {
+        let image = this.getImage();
         if (image) {
             image.classList.add('fade');
         }
@@ -57,6 +64,14 @@ class CharacterDisplay extends React.Component {
             characterDisplay: this.character.toString()
         });
     };
+
+    damageAnimation = async () => {
+        let image = this.getImage();
+        let saveImg = image.getAttribute('src');
+        image.setAttribute('src', DamagesImage);
+        await sleep(DmgTime);
+        image.setAttribute('src', saveImg);
+    }
 
     increaseInitiative = () => {
         this.character.increaseInitiative();
