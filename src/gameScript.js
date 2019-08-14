@@ -9,8 +9,8 @@ class GameScript {
         this.playTurn();
     };
 
-    playTurn = () => {
-        if (!this.board.isGameOver()) {
+    playTurn = async () => {
+        if (! await this.board.isGameOver()) {
             this.board.blockPlayers();
             this.board.increaseAllInitiative();
             if (this.board.isPlayerTurn()) {

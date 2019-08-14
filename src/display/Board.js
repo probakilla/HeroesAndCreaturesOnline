@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import TeamDisplay from './TeamDisplay';
+import BattleLogs from './BattleLogs';
 import VictoryDisplay from './VictoryDisplay';
 import Prompt from './Prompt';
 import { randomTeamGenerator, getRandomInteger } from '../game/generators/Generator';
@@ -120,7 +121,9 @@ class Board extends React.Component {
         const choice = getRandomInteger(0, targets.length);
         const target = targets[choice];
         const element = document.getElementById('char-' + (target + 4));
-        this.changePrompt('Cpu attacked: ' + target + ' with a power of ' + this.currentCharacter.getPower());
+        let attackText = 'Cpu attacked: ' + target + ' with a power of ' + this.currentCharacter.getPower();
+        window.logs.appendText(attackText);
+        this.changePrompt(attackText);
         await sleep(WaitingTime);
         element.click();
     };
@@ -133,12 +136,31 @@ class Board extends React.Component {
     render() {
         return (
             <div id='board' onClick={this.checkVictory}>
-                <Container className='board-style'>
-                    <TeamDisplay ref={child => (this.cpuTeamRender = child)} team={this.cpuTeam} isPlayer={false} />
-                    <br />
-                    <TeamDisplay ref={child => (this.userTeamRender = child)} team={this.userTeam} isPlayer={true} />
+                <Container fluid >
+                    <Row>
+                        <Col xs={2} fluid>
+                            <BattleLogs ref={child => (window.logs = child)}/>
+                        </Col>
+                        <Col xs={10}>
+                            <Container className='board-style'>
+                                <TeamDisplay
+                                    ref={child => (this.cpuTeamRender = child)}
+                                    team={this.cpuTeam}
+                                    isPlayer={false}
+                                />
+                                <br />
+                                <TeamDisplay
+                                    ref={child => (this.userTeamRender = child)}
+                                    team={this.userTeam}
+                                    isPlayer={true}
+                                />
+                            </Container>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-center">
+                        <Prompt ref={child => (this.prompt = child)} />
+                    </Row>
                 </Container>
-                <Prompt ref={child => (this.prompt = child)} />
             </div>
         );
     }
