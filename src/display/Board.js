@@ -5,14 +5,11 @@ import TeamDisplay from './TeamDisplay';
 import VictoryDisplay from './VictoryDisplay';
 import Prompt from './Prompt';
 import { randomTeamGenerator, getRandomInteger } from '../game/generators/Generator';
+import sleep from './Sleep';
 import '../css/Board.css';
 
 const LimitInitiative = 1000;
 const WaitingTime = 3000;
-
-const sleep = milliseconds => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-};
 
 class Board extends React.Component {
     constructor(props) {

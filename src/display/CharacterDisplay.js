@@ -1,12 +1,14 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import { getRandomInteger } from '../game/generators/Generator';
+import sleep from './Sleep';
 import '../css/Character.css';
 
 const ImgPath = process.env.PUBLIC_URL + '/images/';
 const RipImage = ImgPath + 'rip.png';
 const NoDamages = 0;
-const ImgList = ['character.png', 'archer.png', 'wizzard.png', 'rogue.png'];
+const FadeTime = 1000;
+const ImgList = ['warrior.png', 'archer.png', 'wizzard.png', 'rogue.png', 'paladin.png'];
 
 class CharacterDisplay extends React.Component {
     constructor(props) {
@@ -16,8 +18,8 @@ class CharacterDisplay extends React.Component {
         this.spriteUrl = this.randomCharacterImgPath();
         this.state = {
             characterDisplay: this.character.toString(),
-            image: <img src={this.spriteUrl} alt='alive-character' />,
-            id: props.id
+            id: props.id,
+            image: <img className='character-img' id={props.id + '-img'} src={this.spriteUrl} alt='alive-character' />
         };
     }
 
@@ -37,13 +39,23 @@ class CharacterDisplay extends React.Component {
                 characterDisplay: this.character.toString()
             });
             if (this.character.isDead()) {
-                this.setState({
-                    image: <img src={RipImage} alt='dead-character' />,
-                    characterDisplay: this.character.toString()
-                });
+                this.fadeOutImage();
             }
             window.gameScript.playTurn();
         }
+    };
+
+    fadeOutImage = async () => {
+        let id = this.state.id + '-img';
+        let image = document.getElementById(id);
+        if (image) {
+            image.classList.add('fade');
+        }
+        await sleep (FadeTime);
+        this.setState({
+            image: <img src={RipImage} alt='dead-character' />,
+            characterDisplay: this.character.toString()
+        });
     };
 
     increaseInitiative = () => {
@@ -58,9 +70,7 @@ class CharacterDisplay extends React.Component {
             characterDisplay: this.character.toString()
         });
         if (this.character.isDead()) {
-            this.setState({
-                image: <img src={RipImage} alt='dead-character' />
-            });
+            this.fadeOutImage();
         }
     };
 

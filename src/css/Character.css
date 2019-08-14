@@ -2,3 +2,12 @@
     margin-top: 1rem;
     font-family: "Lucida Console";
 }
+
+.character-img {
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.fade {
+    opacity: 0;
+}
