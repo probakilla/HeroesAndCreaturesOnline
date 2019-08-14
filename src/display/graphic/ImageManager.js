@@ -1,7 +1,8 @@
 import { getRandomInteger } from '../../game/generators/Generator';
+import images from './Images.json';
 
-const ImgList = ['warrior.png', 'archer.png', 'wizzard.png', 'rogue.png', 'paladin.png'];
 const ImgPath = process.env.PUBLIC_URL + '/images/';
+const ImgList = images.characters;
 const RipImg = 'rip.png';
 const DamagesImg = 'dmg.png';
 

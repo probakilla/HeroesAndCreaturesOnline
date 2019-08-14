@@ -15,3 +15,12 @@
 .fade {
     opacity: 0;
 }
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom-effect {
+    transition: transform .2s;
+    transform: scale(1.15);
+}

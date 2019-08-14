@@ -6,7 +6,7 @@ class App extends React.Component {
         return (
             <div id="app" className='App'>
                 <header className='App-header'>
-                    <p>Welcome to the Heroes And Creatures Online advanture !</p>
+                    <p id="title-text">Heroes And Creatures Online</p>
                 </header>
                 <div id="board-div"></div>
             </div>

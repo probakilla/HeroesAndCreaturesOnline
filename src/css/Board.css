@@ -1,5 +1,5 @@
 .board-style {
-    border: 1px solid darkgray;
+    border: 10px groove #48008b;
     border-radius: 10px;
     padding: 2rem;
 }

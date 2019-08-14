@@ -27,6 +27,22 @@ class Animations {
             element.setAttribute('src', save);
         }
     }
+
+    zoomImage(element) {
+        if (element) {
+            if (!element.classList.contains('zoom-effect')) {
+                element.classList.add('zoom-effect');
+            }
+        }
+    }
+
+    unzoomImage(element) {
+        if (element) {
+            if (element.classList.contains('zoom-effect')) {
+                element.classList.remove('zoom-effect');
+            }
+        }
+    }
 }
 
 export default Animations;

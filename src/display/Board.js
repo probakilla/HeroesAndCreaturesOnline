@@ -73,8 +73,10 @@ class Board extends React.Component {
         const cpu = this.cpuTeam.getNextToAttack().getInitiative();
         const player = this.userTeam.getNextToAttack().getInitiative();
         if (player > cpu) {
+            this.userTeamRender.readyToAttack();
             return this.userTeam.getNextToAttack();
         }
+        this.cpuTeamRender.readyToAttack();
         return this.cpuTeam.getNextToAttack();
     };
 

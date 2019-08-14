@@ -2,7 +2,6 @@ import React from 'react';
 import { Col } from 'react-bootstrap';
 import ImageManager from './graphic/ImageManager';
 import Animations from './graphic/Animations';
-import sleep from './Sleep';
 import '../css/Character.css';
 
 const NoDamages = 0;
@@ -32,6 +31,14 @@ class CharacterDisplay extends React.Component {
             window.gameScript.playTurn();
         }
     };
+
+    zoomSprite = () => {
+        this.animations.zoomImage(this.getImage());
+    }
+
+    unzoomSprite = () => {
+        this.animations.unzoomImage(this.getImage());
+    }
 
     getImage = () => {
         let id = this.state.id + '-img';

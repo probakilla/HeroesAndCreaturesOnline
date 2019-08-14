@@ -34,7 +34,29 @@ class TeamDisplay extends React.Component {
         this.characters.forEach(character => {
             character.disableOnClick();
         });
+        this.unzoomTeam();
     };
+
+    unzoomTeam = () => {
+        this.characters.forEach(character => {
+            character.unzoomSprite();
+        })
+    }
+
+    readyToAttack = () => {
+        let maxInit = -1;
+        let selected = -1;
+        for (let i = 0; i < this.team.team.length; ++i) {
+            let char = this.team.team[i];
+            if (! char.isDead() && char.getInitiative() > maxInit) {
+                maxInit = char.getInitiative();
+                selected = i;
+            }
+        }
+        if (selected !== -1) {
+            this.characters[selected].zoomSprite();
+        }
+    }
 
     render() {
         return (
