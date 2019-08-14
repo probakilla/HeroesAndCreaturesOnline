@@ -1,16 +1,16 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import ImageManager from './graphic/ImageManager';
+import Animations from './graphic/Animations';
 import sleep from './Sleep';
 import '../css/Character.css';
 
 const NoDamages = 0;
-const FadeTime = 1000;
-const DmgTime = 200;
 
 class CharacterDisplay extends React.Component {
     constructor(props) {
         super(props);
+        this.animations = new Animations();
         this.character = props.character;
         this.block = NoDamages;
         this.spriteUrl = ImageManager.getRandomCharacterImg();
@@ -21,20 +21,14 @@ class CharacterDisplay extends React.Component {
         };
     }
 
-    handleClick = () => {
-        this.blockDamages();
-    };
-
     blockDamages = async () => {
         if (!this.character.isDead()) {
-            await this.damageAnimation();
+            await this.animations.dmgAnimation(this.getImage());
             this.character.block(this.block);
-            this.setState({
-                characterDisplay: this.character.toString()
-            });
             if (this.character.isDead()) {
-                this.fadeOutImage();
+                await this.animations.fadeOutAnimation(this.getImage());
             }
+            this.refreshStats();
             window.gameScript.playTurn();
         }
     };
@@ -44,42 +38,15 @@ class CharacterDisplay extends React.Component {
         return document.getElementById(id);
     };
 
-    fadeOutImage = async () => {
-        let image = this.getImage();
-        if (image) {
-            image.classList.add('fade');
-        }
-        await sleep(FadeTime);
-        const ripImg = ImageManager.getRipImg();
-        this.setState({
-            image: <img src={ripImg} alt='dead-character' />,
-            characterDisplay: this.character.toString()
-        });
-    };
-
-    damageAnimation = async () => {
-        let image = this.getImage();
-        const saveImg = image.getAttribute('src');
-        const dmgImg = ImageManager.getDmgImg();
-        image.setAttribute('src', dmgImg);
-        await sleep(DmgTime);
-        image.setAttribute('src', saveImg);
-    };
-
-    increaseInitiative = () => {
+    increaseInitiative = async () => {
         this.character.increaseInitiative();
-        this.setState({
-            characterDisplay: this.character.toString()
-        });
+        this.refreshStats();
     };
 
     refreshStats = () => {
         this.setState({
             characterDisplay: this.character.toString()
         });
-        if (this.character.isDead()) {
-            this.fadeOutImage();
-        }
     };
 
     enableOnClick = power => {
