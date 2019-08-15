@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/heroesAndCreatures/static/css/main.cd848eba.chunk.css",
+    "main.js": "/heroesAndCreatures/static/js/main.f486bb23.chunk.js",
+    "main.js.map": "/heroesAndCreatures/static/js/main.f486bb23.chunk.js.map",
+    "runtime~main.js": "/heroesAndCreatures/static/js/runtime~main.2172c302.js",
+    "runtime~main.js.map": "/heroesAndCreatures/static/js/runtime~main.2172c302.js.map",
+    "static/js/2.373df350.chunk.js": "/heroesAndCreatures/static/js/2.373df350.chunk.js",
+    "static/js/2.373df350.chunk.js.map": "/heroesAndCreatures/static/js/2.373df350.chunk.js.map",
+    "index.html": "/heroesAndCreatures/index.html",
+    "precache-manifest.114e5c1372e4ff7914083ce26026fc0b.js": "/heroesAndCreatures/precache-manifest.114e5c1372e4ff7914083ce26026fc0b.js",
+    "service-worker.js": "/heroesAndCreatures/service-worker.js",
+    "static/css/main.cd848eba.chunk.css.map": "/heroesAndCreatures/static/css/main.cd848eba.chunk.css.map"
+  }
+}
