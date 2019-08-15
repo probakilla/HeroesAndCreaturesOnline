@@ -2,7 +2,7 @@
   "name": "heroes-and-creatures-online",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://probakilla.github.io/heroesAndCreatures",
+  "homepage": "http://probakilla.github.io/HeroesAndCreaturesOnline",
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
     "@testing-library/jest-dom": "^4.0.0",

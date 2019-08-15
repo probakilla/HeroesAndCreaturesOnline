@@ -21,12 +21,17 @@ class BattleLogs extends React.Component {
         const { open } = this.state;
         return (
             <div>
-                <Button onClick={() => this.setState({ open: !open })} aria-controls='collapse-text' aria-axpend={open}>
+                <Button
+                    className="btn btn-dark raised"
+                    onClick={() => this.setState({ open: !open })}
+                    aria-controls="collapse-text"
+                    aria-axpend={open}
+                >
                     {' '}
-                    Click to expand the battle log
+                    Click to expand the battle log (Not functional)
                 </Button>
                 <Collapse in={this.state.open}>
-                    <div id='collapse-text'>
+                    <div id="collapse-text">
                         <p>Battle has begun!</p> <br />
                     </div>
                 </Collapse>

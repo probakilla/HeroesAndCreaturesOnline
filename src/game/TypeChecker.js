@@ -1,5 +1,5 @@
 import Character from './character/Character';
-import Weapon from './weapon/Weapon';
+import Weapon from './Weapon/Weapon';
 import Team from './team/Team';
 
 export function areNumbers() {

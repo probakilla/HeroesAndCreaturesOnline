@@ -1,7 +1,7 @@
 .App {
+    color: white;
     min-height: 100vh;
     background-color: #151616;
-    color: white;
     text-align: center;
 }
 
@@ -32,10 +32,6 @@
 
 .App-header p {
     margin-top: 3rem;
-}
-
-.App p {
-    color: white;
 }
 
 .App-link {

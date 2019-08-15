@@ -5,6 +5,7 @@ import TeamDisplay from './TeamDisplay';
 import BattleLogs from './BattleLogs';
 import VictoryDisplay from './VictoryDisplay';
 import Prompt from './Prompt';
+import TurnDisplay from './TurnDisplay';
 import { randomTeamGenerator, getRandomInteger } from '../game/generators/Generator';
 import sleep from './Sleep';
 import '../css/Board.css';
@@ -27,9 +28,9 @@ class Board extends React.Component {
             const div = document.getElementById('board');
             div.innerHTML = '';
             if (this.playerWon()) {
-                ReactDOM.render(<VictoryDisplay winner='user' />, div);
+                ReactDOM.render(<VictoryDisplay winner="user" />, div);
             } else {
-                ReactDOM.render(<VictoryDisplay winner='cpu' />, div);
+                ReactDOM.render(<VictoryDisplay winner="cpu" />, div);
             }
         }
     };
@@ -92,6 +93,7 @@ class Board extends React.Component {
     };
 
     allowUserPlay = () => {
+        window.turnDisplay.playerTurn();
         let power = this.currentCharacter.getPower();
         this.currentCharacter.resetInitiative();
         this.changePrompt('User turn: Power -> ' + power);
@@ -99,6 +101,7 @@ class Board extends React.Component {
     };
 
     allowCpuPlay = () => {
+        window.turnDisplay.computerTurn();
         let power = this.currentCharacter.getPower();
         this.currentCharacter.resetInitiative();
         this.changePrompt('Cpu turn: Power -> ' + power);
@@ -135,30 +138,38 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div id='board' onClick={this.checkVictory}>
-                <Container fluid >
+            <div id="board" onClick={this.checkVictory}>
+                <Container fluid>
                     <Row>
                         <Col xs={2} fluid>
-                            <BattleLogs ref={child => (window.logs = child)}/>
+                            <BattleLogs ref={child => (window.logs = child)} />
                         </Col>
-                        <Col xs={10}>
-                            <Container className='board-style'>
-                                <TeamDisplay
-                                    ref={child => (this.cpuTeamRender = child)}
-                                    team={this.cpuTeam}
-                                    isPlayer={false}
-                                />
-                                <br />
-                                <TeamDisplay
-                                    ref={child => (this.userTeamRender = child)}
-                                    team={this.userTeam}
-                                    isPlayer={true}
-                                />
-                            </Container>
+                        <Col xs={8}>
+                            <Row className="justify-content-center">
+                                <TurnDisplay ref={child => (window.turnDisplay = child)} />
+                            </Row>
+                            <Row>
+                                <Container className="board-style">
+                                    <p className="team-text">Computer team</p><br/>
+                                    <TeamDisplay
+                                        ref={child => (this.cpuTeamRender = child)}
+                                        team={this.cpuTeam}
+                                        isPlayer={false}
+                                    />
+                                    <hr />
+                                    <TeamDisplay
+                                        ref={child => (this.userTeamRender = child)}
+                                        team={this.userTeam}
+                                        isPlayer={true}
+                                    />
+                                    <br/><p className="team-text">Your team</p>
+                                </Container>
+                            </Row>
                         </Col>
-                    </Row>
-                    <Row className="justify-content-center">
-                        <Prompt ref={child => (this.prompt = child)} />
+                        <Col xs={2} className="justify-content-start">
+                            {' '}
+                            <Prompt ref={child => (this.prompt = child)} />
+                        </Col>
                     </Row>
                 </Container>
             </div>
