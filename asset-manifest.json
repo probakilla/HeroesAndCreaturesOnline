@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/heroesAndCreatures/static/css/main.cd848eba.chunk.css",
-    "main.js": "/heroesAndCreatures/static/js/main.f486bb23.chunk.js",
-    "main.js.map": "/heroesAndCreatures/static/js/main.f486bb23.chunk.js.map",
-    "runtime~main.js": "/heroesAndCreatures/static/js/runtime~main.2172c302.js",
-    "runtime~main.js.map": "/heroesAndCreatures/static/js/runtime~main.2172c302.js.map",
-    "static/js/2.373df350.chunk.js": "/heroesAndCreatures/static/js/2.373df350.chunk.js",
-    "static/js/2.373df350.chunk.js.map": "/heroesAndCreatures/static/js/2.373df350.chunk.js.map",
-    "index.html": "/heroesAndCreatures/index.html",
-    "precache-manifest.114e5c1372e4ff7914083ce26026fc0b.js": "/heroesAndCreatures/precache-manifest.114e5c1372e4ff7914083ce26026fc0b.js",
-    "service-worker.js": "/heroesAndCreatures/service-worker.js",
-    "static/css/main.cd848eba.chunk.css.map": "/heroesAndCreatures/static/css/main.cd848eba.chunk.css.map"
+    "main.css": "/HeroesAndCreaturesOnline/static/css/main.cd848eba.chunk.css",
+    "main.js": "/HeroesAndCreaturesOnline/static/js/main.3bec3cec.chunk.js",
+    "main.js.map": "/HeroesAndCreaturesOnline/static/js/main.3bec3cec.chunk.js.map",
+    "runtime~main.js": "/HeroesAndCreaturesOnline/static/js/runtime~main.ae02716a.js",
+    "runtime~main.js.map": "/HeroesAndCreaturesOnline/static/js/runtime~main.ae02716a.js.map",
+    "static/js/2.373df350.chunk.js": "/HeroesAndCreaturesOnline/static/js/2.373df350.chunk.js",
+    "static/js/2.373df350.chunk.js.map": "/HeroesAndCreaturesOnline/static/js/2.373df350.chunk.js.map",
+    "index.html": "/HeroesAndCreaturesOnline/index.html",
+    "precache-manifest.523eee21f751f34aae81b1077c29f6fd.js": "/HeroesAndCreaturesOnline/precache-manifest.523eee21f751f34aae81b1077c29f6fd.js",
+    "service-worker.js": "/HeroesAndCreaturesOnline/service-worker.js",
+    "static/css/main.cd848eba.chunk.css.map": "/HeroesAndCreaturesOnline/static/css/main.cd848eba.chunk.css.map"
   }
 }
