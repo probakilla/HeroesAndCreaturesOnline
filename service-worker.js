@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/HeroesAndCreaturesOnline/precache-manifest.523eee21f751f34aae81b1077c29f6fd.js"
+  "/HeroesAndCreaturesOnline/precache-manifest.17741cabcf394ce243f21b48de583833.js"
 );
 
 self.addEventListener('message', (event) => {
